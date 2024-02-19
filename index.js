@@ -6,7 +6,7 @@ const server = http.createServer((req, res) => {
 
   // routing
   let path = "./src/pages/";
-  switch ((req, url)) {
+  switch (req.url) {
     case "/":
       path += "index.html";
       res.statusCode = 200;
@@ -23,6 +23,15 @@ const server = http.createServer((req, res) => {
       path += "404.html";
       res.statusCode = 404;
   }
+
+  // send html
+  fs.readFile(path, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.end();
+    }
+    res.end(data);
+  });
 });
 
 server.listen("8080", "localhost", () => {
