@@ -24,3 +24,7 @@ const server = http.createServer((req, res) => {
       res.statusCode = 404;
   }
 });
+
+server.listen("8080", "localhost", () => {
+  console.log("listening for req on port 8080");
+});
